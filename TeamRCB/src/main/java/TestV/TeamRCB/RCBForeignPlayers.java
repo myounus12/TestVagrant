@@ -14,8 +14,6 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.junit.Assert;
 
-
-
 public class RCBForeignPlayers {
 
 	public static void main(String[] args) throws FileNotFoundException, IOException {

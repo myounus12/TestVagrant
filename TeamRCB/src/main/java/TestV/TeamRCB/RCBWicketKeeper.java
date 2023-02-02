@@ -34,7 +34,6 @@ public class RCBWicketKeeper {
 		 System.out.println(name);
 		 System.out.println("Country of the player");
 		 System.out.println(country);
-
 	}
 
 }
