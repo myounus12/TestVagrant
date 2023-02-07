@@ -6,10 +6,13 @@ public class Player {
 
 	@JsonProperty("name")
 	String name;
+	
 	@JsonProperty("country")
 	String country;
+	
 	@JsonProperty("role")
 	String role;
+	
 	@JsonProperty("price-in-crores")
 	String priceInCrores;
 
