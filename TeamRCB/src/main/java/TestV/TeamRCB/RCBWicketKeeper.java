@@ -4,12 +4,9 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.List;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
 import org.junit.Assert;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class RCBWicketKeeper {
 
@@ -18,15 +15,16 @@ public class RCBWicketKeeper {
 		 boolean flag = false;
 	     File file = new File(path);
 	     String jsonData = new String(Files.readAllBytes(Paths.get(file.toURI())));
-		 JSONObject jObj = new JSONObject(jsonData);
-		 JSONArray jArr = jObj.getJSONArray("player");
+	     ObjectMapper objectMapper = new ObjectMapper();
+	     Players players = objectMapper.readValue(jsonData, Players.class);
 		 String country=null,name = null;
-		 for(int i=0;i<jArr.length();i++){
-			 if(jArr.getJSONObject(i).getString("role").equalsIgnoreCase("Wicket-keeper")){
+		 List<Player> playerList = players.getPlayer();
+		 for(Player player : playerList){
+			 if(player.getRole().equalsIgnoreCase("Wicket-keeper")){
 				 flag = true;
-				 country = jArr.getJSONObject(i).getString("country");
-				 name = jArr.getJSONObject(i).getString("name");
-				 break;
+				 country = player.getCountry();
+				 name = player.getName();
+				 break; 
 			 }
 		 }
 		 Assert.assertEquals("No Wicket Keeper in RCB team",true, flag);
